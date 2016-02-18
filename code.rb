@@ -1,12 +1,12 @@
-require './employee_and_department_migration'
-
+# require './employee_and_department_migration'
+#
 # EmployeeAndDepartmentMigration.migrate(:up)
-
-require './database_configuration.rb'
-require './employee.rb'
-require './department.rb'
-require 'byebug'
-
+#
+# require './database_configuration.rb'
+# require './employee.rb'
+# require './department.rb'
+# require 'byebug'
+#
 # e = Employee.create(name: "Wombles", email: "wombly@gmail.com", phone: "123-324-5234", salary: 50000)
 # p e
 #
@@ -23,5 +23,5 @@ require 'byebug'
 #
 # test_dept = Department.find(1)
 # p test_dept
-
-byebug
+#
+# byebug
