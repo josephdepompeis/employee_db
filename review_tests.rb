@@ -1,10 +1,28 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './database_configuration.rb'
+# require './database_configuration.rb'
 require './employee.rb'
 require './department.rb'
 require 'byebug'
+require 'active_record'
+ActiveRecord::Base.establish_connection(
+  adapter:  'sqlite3',
+  database: 'test.sqlite3'
+)
+require './employee_and_department_migration.rb'
+
+
+
+
+
 class EmployeeReviews < Minitest::Test
+  # def setup
+  #   EmployeeAndDepartmentMigration.migrate(:up)
+  # end
+  #
+  # def teardown
+  #   EmployeeAndDepartmentMigration.migrate(:down)
+  # end
 
   def test_classes_exist
     assert Department
@@ -105,7 +123,6 @@ class EmployeeReviews < Minitest::Test
   def test_evaluate_employee_review
     xavier = Employee.new(name: 'Xavier', email: 'ProfX@marvel.com', phone: '911', salary: 70000.00)
     xavier.add_employee_review(positive_review_one)
-  # byebug
     assert xavier.satisfactory
 
   end

@@ -1,5 +1,4 @@
-require './database_configuration'
-
+# require './database_configuration'
 
 class EmployeeAndDepartmentMigration < ActiveRecord::Migration
   def change

@@ -1,4 +1,4 @@
-
+require 'active_record'
 class Employee < ActiveRecord::Base
 belongs_to :department
   #
