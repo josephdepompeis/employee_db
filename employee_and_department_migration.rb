@@ -5,6 +5,7 @@ class EmployeeAndDepartmentMigration < ActiveRecord::Migration
   def change
     create_table :employees do |t|
       t.string :name
+      t.integer :department_id
       t.references :department
       t.string :email
       t.string :phone

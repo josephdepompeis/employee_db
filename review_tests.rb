@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './database_configuration.rb'
 require './employee.rb'
 require './department.rb'
+require 'byebug'
 class EmployeeReviews < Minitest::Test
 
   def test_classes_exist
@@ -21,12 +22,20 @@ class EmployeeReviews < Minitest::Test
     assert new_employee
   end
 
-  # def test_can_add_employee_to_a_department
-  #   a = Department.new(name: "Marketing")
-  #   new_employee = Employee.new(name: "Dan", email: "d@mail.com", phone: "914-555-5555", salary: 50000.00)
-  #   a.add_employee(new_employee)
-  #   assert_equal [new_employee], a.staff
-  # end
+  def test_can_add_employee_to_a_department
+    a = Department.new(name: "Marketing")
+    new_employee = Employee.new(name: "Dan", email: "d@mail.com", phone: "914-555-5555", salary: 50000.00)
+    a.add_employee(new_employee)
+    assert_equal [new_employee], a.employees
+  end
+
+
+  def test_can_get_employee_department_id
+    new_employee = Employee.new(name: "Dan", email: "d@mail.com", phone: "914-555-5555", salary: 50000.00, department_id:1)
+    assert_equal 1, new_employee.department_id
+  end
+
+
 
   def test_can_get_employee_name
     new_employee = Employee.new(name: "Dan", email: "d@mail.com", phone: "914-555-5555", salary: 50000.00)
@@ -77,7 +86,7 @@ class EmployeeReviews < Minitest::Test
   end
 
   def test_department_raises_based_on_criteria
-    a = Department.new("Marketing")
+    a = Department.new(name: "Marketing")
     xavier = Employee.new(name: "Xavier", email: "ProfX@marvel.com", phone: "911", salary: 70000.00)
     new_employee = Employee.new(name: "Dan", email: "d@mail.com", phone: "914-555-5555", salary: 50000.00)
     old_employee = Employee.new(name: "Yvonne", email: "Yvonne@urFired.com", phone: "919-123-4567", salary: 40000.00)
@@ -96,7 +105,9 @@ class EmployeeReviews < Minitest::Test
   def test_evaluate_employee_review
     xavier = Employee.new(name: 'Xavier', email: 'ProfX@marvel.com', phone: '911', salary: 70000.00)
     xavier.add_employee_review(positive_review_one)
+  # byebug
     assert xavier.satisfactory
+
   end
 
   private def negative_review_one
